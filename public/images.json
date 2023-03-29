@@ -1,0 +1,29 @@
+{
+    "images": [
+      {
+        "src": "https://picsum.photos/id/1005/400/400",
+        "alt": "Sunset over a lake"
+      },
+      {
+        "src": "https://picsum.photos/id/1010/400/400",
+        "alt": "A snowy mountain"
+      },
+      {
+        "src": "https://picsum.photos/id/1025/400/400",
+        "alt": "A red fox"
+      },
+      {
+        "src": "https://picsum.photos/id/1035/400/400",
+        "alt": "A field of sunflowers"
+      },
+      {
+        "src": "https://picsum.photos/id/1040/400/400",
+        "alt": "A rocky coastline"
+      },
+      {
+        "src": "https://picsum.photos/id/1045/400/400",
+        "alt": "A wooden bridge over a river"
+      }
+    ]
+  }
+  
