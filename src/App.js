@@ -62,17 +62,37 @@ function GalleryItem({ src, alt, onClick }) {
 
 // Component for rendering the modal
 function Modal({ src, alt, onClose, onNext, onPrev }) {
+  const [zoom, setZoom] = useState(1);
+
+  const handleZoomIn = (factor) => {
+    setZoom(zoom + factor);
+  };
+
+  const handleZoomOut = (factor) => {
+    setZoom(zoom - factor);
+  };
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       {/* Close modal on click outside */}
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <img src={src} alt={alt} />
+        <img
+          src={src}
+          alt={alt}
+          style={{ transform: `scale(${zoom})`, maxWidth: "100%", maxHeight: "100%" }}
+        />
         <div className="modal-caption">{alt}</div>
         <button className="prev-button" onClick={onPrev}>
           &lt;
         </button>
         <button className="next-button" onClick={onNext}>
           &gt;
+        </button>
+        <button className="zoom-in-button" onClick={() => handleZoomIn(0.1)}>
+          +
+        </button>
+        <button className="zoom-out-button" onClick={() => handleZoomOut(0.1)}>
+          -
         </button>
         <button className="close-button" onClick={onClose}>
           X
@@ -81,5 +101,7 @@ function Modal({ src, alt, onClose, onNext, onPrev }) {
     </div>
   );
 }
+
+
 
 export default App;
