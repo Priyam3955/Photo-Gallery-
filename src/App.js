@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+  // State to hold the images array and current index of the image being viewed
   const [images, setImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null);
 
   useEffect(() => {
+    // Fetch images data from images.json file when component mounts
     fetch('/images.json')
       .then(response => response.json())
       .then(data => {
@@ -14,16 +16,19 @@ function App() {
       .catch(error => console.error(error));
   }, []);
 
+  // Function to set the current index of the image clicked on in the gallery
   const handleClick = (index) => {
     setCurrentIndex(index);
   };
 
+  // Function to close the modal
   const handleClose = () => {
     setCurrentIndex(null);
   };
 
   return (
     <div className="gallery-container">
+      {/* Render gallery items using map */}
       {images.map((image, index) => (
         <GalleryItem
           key={index}
@@ -32,6 +37,7 @@ function App() {
           onClick={() => handleClick(index)}
         />
       ))}
+      {/* Render modal if current index is not null */}
       {currentIndex !== null && (
         <Modal
           src={images[currentIndex].src}
@@ -45,6 +51,7 @@ function App() {
   );
 }
 
+// Component for rendering gallery items
 function GalleryItem({ src, alt, onClick }) {
   return (
     <div className="gallery-item">
@@ -53,10 +60,12 @@ function GalleryItem({ src, alt, onClick }) {
   );
 }
 
+// Component for rendering the modal
 function Modal({ src, alt, onClose, onNext, onPrev }) {
   return (
-    <div className="modal-overlay">
-      <div className="modal">
+    <div className="modal-overlay" onClick={onClose}>
+      {/* Close modal on click outside */}
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
         <img src={src} alt={alt} />
         <div className="modal-caption">{alt}</div>
         <button className="prev-button" onClick={onPrev}>
